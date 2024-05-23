@@ -40,30 +40,30 @@ subjects:
 - kind: ServiceAccount
   name: jenkins
 ---
-apiVersion: apps/v1 
-kind: Deployment 
-metadata: 
-  name: jenkins 
-spec: 
-  replicas: 1 
-  selector: 
-    matchLabels: 
-      app: jenkins 
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jenkins
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jenkins
   template:
     metadata:
       labels:
         app: jenkins
     spec:
       containers:
-      - name: jenkins 
-        image: as35/jnk8s 
+      - name: jenkins
+        image: as35/jnk8s
         ports:
         - containerPort: 8080
         - containerPort: 50000
-        volumeMounts: 
+        volumeMounts:
         - name: jenkins-home
-          mountPath: /var/jenkins_home 
+          mountPath: /var/jenkins_home
       volumes:
-      - name: jenkins-home 
-        emptyDir: { } 
+      - name: jenkins-home
+        emptyDir: { }
       serviceAccountName: jenkins
